@@ -1,17 +1,22 @@
 .register {
-    height: 100vh;
-    justify-content: center;
-    display: flex;
+    height: 641px;
     align-items: center;
     background-color: antiquewhite;
+    padding: 0px 50px;
+    overflow: scroll;
+    .title {
+        font-size: 40px;
+        color: darkcyan;
+        font-weight: bold;
+        font-family: emoji;
+        padding-top: 30px;
+    }
 
-    div {
-        width: 200px;
-        .title {
-            font-size: 20px;
-            font-family: sans-serif;
-            color: darkgreen;
-        }
+    >div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100% - 200px);
 
         .form_container {
             width: fit-content;
@@ -20,15 +25,36 @@
                 padding-bottom: 20px;
             }
 
+            input {
+                font-size: 20px;
+                border: none;
+                border-radius: 4px;
+
+                &:focus {
+                    outline: none; 
+                }
+            }
+
             .submit_button {
                 display: flex;
                 justify-content: center;
+
+                button {
+                    width: 100%;
+                    border-radius: 5px;
+                    background-color: #efb507c2;
+                    border: 2px solid #ad8304c2;
+                    font-size: large;
+                    font-weight: 500;
+                    color: darkcyan;
+                }
             }
         }
+    }
 
-        .reg_error {
-            color: rgb(255, 38, 0);
-            font-family: sans-serif;
-        }
+    .reg_error {
+        color: rgb(199 57 32);
+        font-family: sans-serif;
+        font-size: 20px;
     }
 }

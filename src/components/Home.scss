@@ -1,10 +1,29 @@
 .main_container {
     display: flex;
     justify-content: space-around;
-
+    background: url('/assets/complaintboxbg.webp');
+    height: 100vh;
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-color: rgba(0,0,0,0.4);
+    font-family: cursive,sans-serif;
+    color: white;
+    align-items: center;
+     
+    >div {
+        p {
+            font-size: 20px;
+        }
+    }
+    h1 {
+        color: #e3b218;
+    font-size: 42px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
     a {
         text-decoration: none;
-        color: black;
+        color: #42ff07d1;
         font-size: 25px;
     }
 }

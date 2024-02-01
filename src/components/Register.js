@@ -39,8 +39,11 @@ function Register() {
     }
     return (
         <div className="register">
+            <h2 className="title">Create an Account</h2>
+            {error.split(" ").includes('login')
+                ? <p className="reg_error">{error} <Link to={"/login"}>here</Link></p>
+                : <p className="reg_error">{error}</p>}
             <div>
-                <h3 className="title">Create an Account</h3>
                 <form className="form_container" onSubmit={handleSubmit}>
                     <div>
                         <input type='text' name='name' placeholder='User Name' onChange={handleChange} value={userData.name} />
@@ -56,9 +59,6 @@ function Register() {
                         <button type="submit" >Submit</button>
                     </div>
                 </form>
-            {error.split(" ").includes('login')
-                ? <h3 className="reg_error">{error} <Link to={"/login"}>here</Link></h3>
-                : <h3 className="reg_error">{error}</h3>}
             </div>
         </div>
     )
