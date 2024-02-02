@@ -4,6 +4,7 @@
     background-color: antiquewhite;
     padding: 0px 50px;
     overflow: scroll;
+
     .title {
         font-size: 40px;
         color: darkcyan;
@@ -31,7 +32,7 @@
                 border-radius: 4px;
 
                 &:focus {
-                    outline: none; 
+                    outline: none;
                 }
             }
 

@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { BE_URL } from "../App";
-import { Link } from "react-router-dom";
 import './Login.scss'
 
 function Login() {
@@ -52,7 +51,7 @@ function Login() {
                         <button type="submit" >Login</button>
                     </div>
                 </form>
-                <div className="err_cont"> 
+                <div className="err_cont">
                     {error.split(" ").includes('Account')
                         ? <h3 className="reg_link"><Link to={"/register"}>{error}</Link></h3>
                         : <h3 className="err_msg">{error}</h3>}

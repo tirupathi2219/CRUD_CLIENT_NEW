@@ -1,18 +1,17 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { BE_URL } from "../App";
-import { useState } from "react";
-import './Welcome.scss'
+import Home from "./Home";
 import Modal from "../helpers/Modal";
+import './Welcome.scss'
 
 function Welcome() {
     const { state } = useLocation()
-    console.log('8==', state);
     const [users, setUsers] = useState([])
     const [error, setError] = useState('')
     const [editableData, setEditableData] = useState()
     const [showModal, setShowModal] = useState(false)
     const [delErr, setDelErr] = useState('')
-    const [delData, setDelData] = useState()
 
     const getAllUsers = () => {
         fetch(BE_URL + '/auth/users').then(res => res.json())
@@ -29,45 +28,38 @@ function Welcome() {
     }
 
     const handleDeleteBtn = (userItem) => {
-        setDelData(userItem)
         setDelErr('')
         fetch(BE_URL + '/auth/deleteUser', {
             method: 'DELETE',
-            body: JSON.stringify({id: userItem._id}),
+            body: JSON.stringify({ id: userItem._id }),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-        .then((res) => res.json())
-        .then((result) => {
-            if(result.error) {
-                throw new Error(result.error)
-            }
-            // setUsers(result);
-            setUsers((prevData) => {
-                const updateData = prevData.filter(user => user._id !== result._id)
-                console.log(updateData);
-                return updateData
+            .then((res) => res.json())
+            .then((result) => {
+                if (result.error) {
+                    throw new Error(result.error)
+                }
+                setUsers(result);
             })
-            // return result
-        })
-        .catch((error) => {
-            setDelErr(error.message)
-        })
+            .catch((error) => {
+                setDelErr(error.message)
+            })
     }
     return (
         <div>
-            {state?.id === delData?.id 
-            ? <p>Login user is removed from database</p>
-            :<div>
-                <h1>Hiiii, {state.name}</h1>
-                <h3>Mobile: {state.mobile}</h3>
-                <h3>Email: {state.email}</h3>
-            </div>}
-            {error && <div><h5>{error}</h5></div>}
+            {users.length > 0 && users.filter((item) => item._id === state._id).length === 0
+                ? <Home />
+                : <div>
+                    <h1>Hiiii, {state.name}</h1>
+                    <h3>Mobile: {state.mobile}</h3>
+                    <h3>Email: {state.email}</h3>
+                </div>}
+            {error && <div><h5 className="error_text">{error}</h5></div>}
             <button onClick={getAllUsers}>Get All users</button>
+            {delErr && <p className="error_text">{delErr}</p>}
             <div className="card_container">
-                {delErr && <p>{delErr}</p>}
                 {
                     users.map((user, index) => {
                         return <div className="card" key={index} style={{ border: '1px solid #888' }}>
