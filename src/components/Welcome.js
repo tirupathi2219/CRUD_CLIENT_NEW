@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { BE_URL } from "../App";
 import Home from "./Home";
+import ComplaintsChat from "./Complaintschat/ComplaintsChat";
 import Modal from "../helpers/Modal";
 import './Welcome.scss'
 
@@ -77,6 +78,7 @@ function Welcome() {
                 }
                 {showModal && <Modal setShowModal={setShowModal} editableData={editableData} setUsers={setUsers} />}
             </div>
+            <ComplaintsChat />
         </div>
     )
 }
