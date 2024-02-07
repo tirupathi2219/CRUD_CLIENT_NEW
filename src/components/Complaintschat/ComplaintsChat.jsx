@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
 import './ComplaintsChat.scss'
+import { BE_URL } from '../../App';
 
-function ComplaintsChat() {
+function ComplaintsChat({ user }) {
     const [chat, setChat] = useState('');
     const [totalChat, setTotalChat] = useState([]);
+    const [isFromuser, setIsFromUser] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setTotalChat((chatdata) => [...chatdata, chat])
+        setTotalChat((chatdata) => [...chatdata, chat]);
+        fetch(BE_URL + "/auth/updateUsersChat", {
+            method: 'POST',
+            body: JSON.stringify({
+                chat: chat,
+                user: user
+            }),
+            headers: { 'Content-Type': 'application/json' }
+
+        }).then((res) => res.json())
+            .then((result) => {
+                console.log(result)
+            })
+
         setChat('')
         handlescroll()
     }
@@ -26,7 +41,7 @@ function ComplaintsChat() {
                     {totalChat.length
                         ? <div id='chat-box' className='chat-box'>
                             {totalChat.map((item) => {
-                                return <p><label>{item}</label></p>
+                                return <p className={`${isFromuser ? 'alignRight' : 'alignLeft'}`}><label>{item}</label></p>
                             })}
                         </div>
                         : <></>

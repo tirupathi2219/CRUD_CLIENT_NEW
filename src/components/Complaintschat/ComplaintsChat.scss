@@ -7,7 +7,7 @@
         border-radius: 10px;
         background-color: #4e9db3;
         height: 350px;
-    
+
         .chat-box {
             height: 350px;
             overflow-y: scroll;
@@ -17,7 +17,7 @@
             font-size: 20px;
             padding: 0px 20px;
             scrollbar-width: none;
-    
+
             p {
                 label {
                     margin: 5px;
@@ -28,18 +28,26 @@
                     max-width: 80%;
                     text-align: justify;
                 }
+
+                &.alignRight {
+                    text-align: end;
+
+                }
+                &.alignLeft {
+                    text-align: start;
+                }
             }
-    
-            p:nth-child(even) {
-                text-align: start;
-            }
-    
-            p:nth-child(odd) {
-                text-align: end;
-            }
+
+            // p:nth-child(even) {
+            //     text-align: start;
+            // }
+
+            // p:nth-child(odd) {
+            //     text-align: end;
+            // }
         }
     }
-    
+
     input {
         width: 94%;
         margin-top: 20px;

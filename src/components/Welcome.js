@@ -78,7 +78,10 @@ function Welcome() {
                 }
                 {showModal && <Modal setShowModal={setShowModal} editableData={editableData} setUsers={setUsers} />}
             </div>
-            <ComplaintsChat />
+            {
+                users.length > 0 && users.filter((item) => item._id === state._id).length &&
+                <ComplaintsChat user={state}/>
+            }
         </div>
     )
 }
