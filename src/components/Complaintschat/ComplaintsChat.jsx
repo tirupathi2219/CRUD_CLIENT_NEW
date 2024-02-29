@@ -14,7 +14,7 @@ function ComplaintsChat({ user }) {
             method: 'POST',
             body: JSON.stringify({
                 chat: chat,
-                user: user
+                user: user,
             }),
             headers: { 'Content-Type': 'application/json' }
 
