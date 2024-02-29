@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ComplaintsChat.scss'
 import { BE_URL } from '../../App';
 
 function ComplaintsChat({ user }) {
     const [chat, setChat] = useState('');
     const [totalChat, setTotalChat] = useState([]);
-    const [isFromuser, setIsFromUser] = useState(false)
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setTotalChat((chatdata) => [...chatdata, chat]);
-        fetch(BE_URL + "/auth/updateUsersChat", {
+        fetch(BE_URL + "/users/updateUsersChat", {
             method: 'POST',
             body: JSON.stringify({
                 chat: chat,
@@ -41,7 +39,7 @@ function ComplaintsChat({ user }) {
                     {totalChat.length
                         ? <div id='chat-box' className='chat-box'>
                             {totalChat.map((item) => {
-                                return <p className={`${isFromuser ? 'alignRight' : 'alignLeft'}`}><label>{item}</label></p>
+                                return <p className={`${item.user === user ? 'alignRight' : 'alignLeft'}`}><label>{item.chat}</label></p>
                             })}
                         </div>
                         : <></>
