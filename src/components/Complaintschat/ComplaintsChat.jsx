@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './ComplaintsChat.scss'
 import { BE_URL } from '../../App';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function ComplaintsChat() {
-    const params = useParams()
-    console.log('8=====', params, params.state)
-    const user = JSON.parse(params.state)
+    const {state} = useLocation()
+    const user = state
     const [chat, setChat] = useState('');
     const [totalChat, setTotalChat] = useState([]);
 
@@ -33,7 +32,7 @@ function ComplaintsChat() {
     const handlescroll = () => {
         setTimeout(() => {
             document.getElementById('chat-box')?.scrollTo(0, document.getElementById('chat-box')?.scrollHeight)
-        }, 300)
+        }, 1000)
 
     }
     useEffect(() => {
@@ -48,9 +47,8 @@ function ComplaintsChat() {
                     setTotalChat(result)
                 })
         })()
-
+        handlescroll()
     }, [])
-console.log('34====', totalChat)
     return (
         <>
             <div className='chat_container'>
@@ -58,8 +56,7 @@ console.log('34====', totalChat)
                     {totalChat?.length
                         ? <div id='chat-box' className='chat-box'>
                             {totalChat.map((item) => {
-                                console.log('43====', item)
-                                return <p className={`${item.user === user ? 'alignRight' : 'alignLeft'}`}><label>{item.chat}</label></p>
+                                return <p key={item._id} className={`${item.user === user.email ? 'alignRight' : 'alignLeft'}`}><label>{item.chat}</label></p>
                             })}
                         </div>
                         : <></>
