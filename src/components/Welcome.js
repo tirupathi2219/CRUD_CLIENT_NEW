@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BE_URL } from "../App";
 import Home from "./Home";
 import ComplaintsChat from "./Complaintschat/ComplaintsChat";
@@ -13,6 +13,7 @@ function Welcome() {
     const [editableData, setEditableData] = useState()
     const [showModal, setShowModal] = useState(false)
     const [delErr, setDelErr] = useState('')
+    const navigate = useNavigate();
 
     const getAllUsers = () => {
         fetch(BE_URL + '/auth/users').then(res => res.json())
@@ -48,6 +49,9 @@ function Welcome() {
                 setDelErr(error.message)
             })
     }
+    const handleChatClick = () => {
+        navigate(`/chat/${JSON.stringify(state)}`)
+    }
     return (
         <div>
             {users.length > 0 && users.filter((item) => item._id === state._id).length === 0
@@ -80,7 +84,10 @@ function Welcome() {
             </div>
             {
                 users.length > 0 && users.filter((item) => item._id === state._id).length &&
-                <ComplaintsChat user={state}/>
+                <>
+                <button onClick={handleChatClick}>lets chat</button>
+                {/* <ComplaintsChat user={state}/> */}
+                </>
             }
         </div>
     )
