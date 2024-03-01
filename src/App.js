@@ -19,7 +19,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/welcome' element={<Welcome />} />
-        <Route path= '/chat/:state' element={<ComplaintsChat/>} />
+        <Route path= '/chat' element={<ComplaintsChat/>} />
       </Routes>
     </BrowserRouter>
   );

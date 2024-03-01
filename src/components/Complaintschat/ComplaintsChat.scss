@@ -1,6 +1,10 @@
 .chat_container {
     width: 50%;
+    height: 700px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 
     .chat-area {
         margin: 0px 50px;
