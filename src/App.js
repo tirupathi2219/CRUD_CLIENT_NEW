@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import ComplaintsChat from './components/Complaintschat/ComplaintsChat'
 
-export const BE_URL = "http://localhost:3214"
+export const BE_URL = "http://localhost:8000"
 
 function App() {
   return (

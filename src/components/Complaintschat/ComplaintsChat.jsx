@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './ComplaintsChat.scss'
 import { BE_URL } from '../../App';
 import { useLocation } from 'react-router-dom';
+import io from 'socket.io-client';
 
 function ComplaintsChat() {
     const {state} = useLocation()
@@ -9,22 +10,20 @@ function ComplaintsChat() {
     const [chat, setChat] = useState('');
     const [totalChat, setTotalChat] = useState([]);
 
+    const socket =  io(BE_URL);
+    useEffect(() => {
+
+        socket.on('getchat message', (msg, user) => {
+            console.log('connected to server from clinet', msg, user)
+            setTotalChat((prev) => [...prev, {chat: msg, user: user, _id: user._id }])
+        })
+
+
+    }, [])
+    console.log('32=== chatMsgs', totalChat)
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(BE_URL + "/users/updateUsersChat", {
-            method: 'POST',
-            body: JSON.stringify({
-                chat: chat,
-                user: user,
-            }),
-            headers: { 'Content-Type': 'application/json' }
-
-        }).then((res) => res.json())
-            .then((result) => {
-                console.log(result)
-                setTotalChat(result.totalchat)
-            })
-
+        socket.emit('setchat message', chat, user);
         setChat('')
         handlescroll()
     }
