@@ -86,7 +86,6 @@ function Welcome() {
                 users.length > 0 && users.filter((item) => item._id === state._id).length &&
                 <>
                 <button onClick={handleChatClick}>lets chat</button>
-                {/* <ComplaintsChat user={state}/> */}
                 </>
             }
         </div>
