@@ -42,7 +42,6 @@ function Welcome() {
                 if (result.error) {
                     throw new Error(result.error)
                 }
-                console.log('46====',result)
                 setUsers(result);
             })
             .catch((error) => {
@@ -52,8 +51,9 @@ function Welcome() {
     const handleChatClick = () => {
         navigate('/chat', {state: state})
     }
+
     return (
-        <div>
+        <div className="welcome">
             {users.length > 0 && users.filter((item) => item._id === state._id).length === 0
                 ? <Home />
                 : <div>
@@ -82,6 +82,7 @@ function Welcome() {
                 }
                 {showModal && <Modal setShowModal={setShowModal} editableData={editableData} setUsers={setUsers} />}
             </div>
+                <div><button onClick={() => navigate('/denom-calc')}>Denomcalculator</button></div>
             {
                 users.length > 0 && users.filter((item) => item._id === state._id).length &&
                 <>
