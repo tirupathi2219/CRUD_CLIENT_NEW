@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BE_URL } from "../App";
+import config from "../config";
 import './Register.scss'
 
 function Register() {
@@ -20,7 +20,7 @@ function Register() {
     const handleSubmit = (e) => {
         e.preventDefault()
         setError('')
-        fetch(BE_URL + '/auth/register', {
+        fetch(config.BE_URL + '/auth/register', {
             method: 'POST',
             body: JSON.stringify(userData),
             headers: {

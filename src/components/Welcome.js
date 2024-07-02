@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { BE_URL } from "../App";
+import config from "../config";
 import Home from "./Home";
 import Modal from "../helpers/Modal";
 import './Welcome.scss'
@@ -15,7 +15,7 @@ function Welcome() {
     const navigate = useNavigate();
 
     const getAllUsers = () => {
-        fetch(BE_URL + '/auth/users').then(res => res.json())
+        fetch(config.BE_URL + '/auth/users').then(res => res.json())
             .then(data => {
                 setError('')
                 setUsers(data)
@@ -30,7 +30,7 @@ function Welcome() {
 
     const handleDeleteBtn = (userItem) => {
         setDelErr('')
-        fetch(BE_URL + '/auth/deleteUser', {
+        fetch(config.BE_URL + '/auth/deleteUser', {
             method: 'DELETE',
             body: JSON.stringify({ id: userItem._id }),
             headers: {

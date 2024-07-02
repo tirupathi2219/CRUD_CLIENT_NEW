@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Modal.module.scss";
-import { BE_URL } from "../App";
+import config from "../config";
 
 const Modal = ({ setShowModal, editableData, setUsers }) => {
     const [formEditData, setFormEditData] = useState({
@@ -20,7 +20,7 @@ const Modal = ({ setShowModal, editableData, setUsers }) => {
     }, [editableData])
 
     const handleSaveBtn = () => {
-        fetch(BE_URL + '/auth/updateUser', {
+        fetch(config.BE_URL + '/auth/updateUser', {
             method: 'PUT',
             body: JSON.stringify({id: editableData._id,data: formEditData}),
             headers: {
