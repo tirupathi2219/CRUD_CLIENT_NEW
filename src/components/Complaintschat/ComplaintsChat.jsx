@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ComplaintsChat.scss'
-import { BE_URL } from '../../App';
+import config from '../../config';
 import { useLocation } from 'react-router-dom';
 import io from 'socket.io-client';
 
@@ -10,7 +10,7 @@ function ComplaintsChat() {
     const [chat, setChat] = useState('');
     const [totalChat, setTotalChat] = useState([]);
 
-    const socket =  io(BE_URL);
+    const socket =  io(config.BE_URL);
     useEffect(() => {
 
         socket.on('getchat message', (msg, user) => {
@@ -36,7 +36,7 @@ function ComplaintsChat() {
     }
     useEffect(() => {
         (async() => {
-            fetch(BE_URL + "/users/getUsersChat", {
+            fetch(config.BE_URL + "/users/getUsersChat", {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
     

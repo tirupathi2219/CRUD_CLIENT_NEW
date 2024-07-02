@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { BE_URL } from "../App";
 import './Login.scss'
+import config from "../config";
 
 function Login() {
     const navigate = useNavigate()
@@ -19,7 +19,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(BE_URL + '/auth/login', {
+        fetch(config.BE_URL + '/auth/login', {
             method: 'POST',
             body: JSON.stringify(userData),
             headers: {

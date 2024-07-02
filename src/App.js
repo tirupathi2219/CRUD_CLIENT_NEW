@@ -11,7 +11,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Suspense, lazy } from 'react';
 import Denomcalculator from './components/Denomcalculator';
 
-export const BE_URL = "http://localhost:8000"
 
 function App() {
   const ComplaintsChat = lazy(()=> import('./components/Complaintschat/ComplaintsChat'))
