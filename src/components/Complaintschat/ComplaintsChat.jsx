@@ -19,7 +19,7 @@ function ComplaintsChat() {
         })
 
 
-    }, [])
+    }, [socket])
     console.log('32=== chatMsgs', totalChat)
     const handleSubmit = (e) => {
         e.preventDefault();
