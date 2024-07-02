@@ -10,7 +10,8 @@ function Login() {
         email: '',
         password: '',
     })
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value })
@@ -42,10 +43,11 @@ function Login() {
                 <form className="login_cont" onSubmit={handleSubmit}>
                     <div>
                         <input type='text' name='email' placeholder='user mail' onChange={handleChange} value={userData.email} />
-                    </div>
+                    </div>  
 
-                    <div>
-                        <input type='text' name='password' placeholder='enter password' onChange={handleChange} value={userData.password} />
+                    <div className="pwd-field">
+                        <input type={`${showPassword ? 'text': 'password'}`} name='password' placeholder='enter password' onChange={handleChange} value={userData.password} />
+                        <span className="pwd-hideshow" onClick={() => {setShowPassword(!showPassword)}}>{showPassword ? <i class="fa fa-eye" aria-hidden="true"></i> : <i class="fa fa-eye-slash" aria-hidden="true"></i>}</span>
                     </div>
                     <div className="login_btn">
                         <button type="submit" >Login</button>

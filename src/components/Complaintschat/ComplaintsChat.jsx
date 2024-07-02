@@ -31,7 +31,7 @@ function ComplaintsChat() {
     const handlescroll = () => {
         setTimeout(() => {
             document.getElementById('chat-box')?.scrollTo(0, document.getElementById('chat-box')?.scrollHeight)
-        }, 1000)
+        }, 300)
 
     }
     useEffect(() => {
