@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import './ComplaintsChat.scss'
 import config from '../../config';
 import { useLocation } from 'react-router-dom';
@@ -10,7 +10,7 @@ function ComplaintsChat() {
     const [chat, setChat] = useState('');
     const [totalChat, setTotalChat] = useState([]);
 
-    const socket =  io(config.BE_URL);
+    const socket =  useMemo(() => io(config.BE_URL),[config.BE_URL]);
     useEffect(() => {
         socket.on('getchat message', (msg, user) => {
             console.log('connected to server from clinet', msg, user)
@@ -18,7 +18,7 @@ function ComplaintsChat() {
         })
 
 
-    }, [])
+    }, [socket])
     
     const handleSubmit = (e) => {
         e.preventDefault();
