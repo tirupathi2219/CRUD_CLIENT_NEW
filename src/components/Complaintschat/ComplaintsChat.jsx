@@ -12,15 +12,14 @@ function ComplaintsChat() {
 
     const socket =  io(config.BE_URL);
     useEffect(() => {
-
         socket.on('getchat message', (msg, user) => {
             console.log('connected to server from clinet', msg, user)
             setTotalChat((prev) => [...prev, {chat: msg, user: user, _id: user._id }])
         })
 
 
-    }, [socket])
-    console.log('32=== chatMsgs', totalChat)
+    }, [])
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         socket.emit('setchat message', chat, user);
@@ -31,7 +30,7 @@ function ComplaintsChat() {
     const handlescroll = () => {
         setTimeout(() => {
             document.getElementById('chat-box')?.scrollTo(0, document.getElementById('chat-box')?.scrollHeight)
-        }, 300)
+        }, 500)
 
     }
     useEffect(() => {
